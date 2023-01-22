@@ -12,6 +12,9 @@ torch = "^1.13.1"
 nltk = "^3.8.1"
 
 
+[tool.poetry.group.dev.dependencies]
+jupyterlab = "^3.5.2"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
