@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "char-rnn"
+version = "0.1.0"
+description = ""
+authors = ["Vijay Gaikwad <vijaygkd@gmail.com>"]
+readme = "README.md"
+packages = [{include = "char_rnn"}]
+
+[tool.poetry.dependencies]
+python = "3.9.*"
+torch = "^1.13.1"
+nltk = "^3.8.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
