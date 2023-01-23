@@ -2,24 +2,26 @@ import torch
 import torch.nn as nn
 
 class LSTM_CharLM(nn.Module):
-    def __init__(self, input_dim, hidden_dim=128) -> None:
+    def __init__(self, hidden_dim=128) -> None:
         super().__init__()
 
-        self.input_dim = 1
+        self.char_vocab_size = self.output_dim = 128      # ascii char set
+        self.embed_dim = 12
         self.hidden_dim = hidden_dim
-        self.output_dim = 26
+
+        self.char_embedding = nn.Embedding(self.char_vocab_size, self.embed_dim)
 
         self.hidden = nn.LSTM(
-            self.input_dim, 
+            self.embed_dim, 
             self.hidden_dim,
-            dropout=.5
+            dropout=0.5
             )
 
-        # self.hidden = nn.Linear(self.input_dim, self.hidden_dim)
         self.output = nn.Linear(self.hidden_dim, self.output_dim)
 
     def forward(self, x):
-        hidden_op, (h_n, c_n) = self.hidden(x)
+        char_emb = self.char_embedding(x)
+        hidden_op, (h_n, c_n) = self.hidden(char_emb)
         logits = self.output(hidden_op)
         return logits
 
