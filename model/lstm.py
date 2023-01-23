@@ -19,8 +19,7 @@ class LSTM_CharLM(nn.Module):
         self.output = nn.Linear(self.hidden_dim, self.output_dim)
 
     def forward(self, x):
-        hidden_op = self.hidden(x)
-        print(hidden_op[0][0].shape, hidden_op[1][0].shape)
+        hidden_op, (h_n, c_n) = self.hidden(x)
         logits = self.output(hidden_op)
         return logits
 
@@ -29,7 +28,6 @@ if __name__ == "__main__":
     m = LSTM_CharLM(1, 4)
     x = "hello world"
     x_vec = torch.Tensor([[ord(c)] for c in x])
-    print(x_vec)
-    
     op = m(x_vec)
+    print(op)
     
