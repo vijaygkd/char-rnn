@@ -14,7 +14,8 @@ class LSTM_CharLM(nn.Module):
         self.hidden = nn.LSTM(
             self.embed_dim, 
             self.hidden_dim,
-            dropout=0.5
+            dropout=0.5,
+            batch_first=True
             )
 
         self.output = nn.Linear(self.hidden_dim, self.output_dim)
