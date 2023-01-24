@@ -12,7 +12,7 @@ def str_to_ids(text):
 
 def char_idx_to_str(char_idx):
     '''Convert vector to char indices to string'''
-    return [chr(c) for c in char_idx]
+    return ''.join([chr(c) for c in char_idx])
 
 
 def process_text(x):
@@ -22,7 +22,6 @@ def process_text(x):
     x_vec = str_to_ids(x)
     y_vec = str_to_ids(y)
     return x_vec, y_vec
-
 
 
 def process_corpus(corpus, seq_len):
