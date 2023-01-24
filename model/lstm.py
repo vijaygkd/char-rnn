@@ -14,7 +14,7 @@ class LSTM_CharLM(nn.Module):
         self.hidden = nn.LSTM(
             self.embed_dim, 
             self.hidden_dim,
-            dropout=0.5,
+            # dropout=0.5,
             batch_first=True
             )
 
@@ -33,4 +33,3 @@ if __name__ == "__main__":
     x_vec = torch.Tensor([[ord(c)] for c in x])
     op = m(x_vec)
     print(op)
-    
