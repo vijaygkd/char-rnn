@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 
 class LSTM_CharLM(nn.Module):
-    def __init__(self, hidden_dim=128) -> None:
+    def __init__(self, hidden_dim=128, hidden_layers=1) -> None:
         super().__init__()
 
         self.char_vocab_size = self.output_dim = 128      # ascii char set
@@ -14,9 +14,10 @@ class LSTM_CharLM(nn.Module):
         self.hidden = nn.LSTM(
             self.embed_dim, 
             self.hidden_dim,
-            # dropout=0.5,
-            batch_first=True
-            )
+            num_layers=hidden_layers,
+            dropout=0.5,
+            batch_first=True,
+        )
 
         self.output = nn.Linear(self.hidden_dim, self.output_dim)
 
