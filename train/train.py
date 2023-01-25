@@ -2,6 +2,7 @@
 Module for training RNN LM
 """
 from tqdm import tqdm
+
 import numpy as np
 import torch
 import torch.nn as nn
@@ -70,7 +71,7 @@ def train(model, train_dataloader, val_dataloader=None, epochs=1000, lr=0.01):
                     loss = test_batch(model, xe_loss, X_val, Y_val)
                     val_loss.append(loss.item())
 
-                    # y_test = test_batch(model, X_test)
-                    # for y_str in y_test: print(y_str)
-
+                x_sample = X_val[0]
                 print(f'Epoch: {epoch} | Val Loss: {np.mean(val_loss)}')
+                print(f'<Target>: {char_idx_to_str(x_sample)}')
+                print(f'<Prediction>: {test_batch_gen_text(model, X_val[:1])[0]}')
