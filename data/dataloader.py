@@ -36,6 +36,6 @@ def process_input_file(file_path, seq_len=50, batch_size=100, train_frac=0.95):
     print(f"Train set: {len(train_dataset)} | Val set: {len(val_dataset)}")
 
     train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-    val_dataloader = DataLoader(val_dataset, batch_size=batch_size)
+    val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=True)
 
     return train_dataloader, val_dataloader
