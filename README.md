@@ -10,12 +10,22 @@ Character-level Language Model built with RNN
     * Or a larger dataset would help?
 
 * Sampling tokens from distribution auto-regressively.
+    * Basic version done.!
 
 * Truncated BPTT and how to implement it?
+    * Implemented by creating input sequences of length max_seq_len e.g. 100
 
 * Measure perpexity
 
-* Experiment with larger datasets
+* Model
+    * Add multiple hidden layers
+    * Add dropout
+
+* Larger corpus
+    * Model train VERY SLOW on larger >1MB dataset :(
+    * Try GPU training
+
+
 
 
 
