@@ -1,6 +1,9 @@
 # char-rnn
 Character-level Language Model built with RNN
 
+# References
+TODO fill out
+
 
 # Observations / Considerations
 
@@ -10,12 +13,25 @@ Character-level Language Model built with RNN
     * Or a larger dataset would help?
 
 * Sampling tokens from distribution auto-regressively.
+    * Basic version done.!
+
+* Dropout
+    * Emperically, it does seem to prevent overfitting of the model. 
+    * Val loss keep decreasing with decrease in train loss. 
+    * On small datasets, the val loss starts to increase soon after.
+    * Tried dropout=0.5
 
 * Truncated BPTT and how to implement it?
+    * Implemented by creating input sequences of length max_seq_len e.g. 100
 
 * Measure perpexity
+    * Perplexity = exp(cross_entropy_loss)
 
-* Experiment with larger datasets
+* Larger corpus
+    * Model train VERY SLOW on larger >1MB dataset :(
+    * Try GPU training
+
+
 
 
 
