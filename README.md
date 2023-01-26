@@ -12,6 +12,12 @@ Character-level Language Model built with RNN
 * Sampling tokens from distribution auto-regressively.
     * Basic version done.!
 
+* Dropout
+    * Emperically, it does seem to prevent overfitting of the model. 
+    * Val loss keep decreasing with decrease in train loss. 
+    * On small datasets, the val loss starts to increase soon after.
+    * Tried dropout=0.5
+
 * Truncated BPTT and how to implement it?
     * Implemented by creating input sequences of length max_seq_len e.g. 100
 
