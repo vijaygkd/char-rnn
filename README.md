@@ -61,52 +61,23 @@ New text can be generated from the model by sampling from the output probabiliti
 ### Priming
 You can also provide `context` to prime the model for generating new text conditioned on the context.
 
-# Observations / Considerations / TODO
-
-* In the training script, the output char is selected with argmax. This causes the model to always select the same char conditioned for pretext. 
-    * Maybe sampling from output distribution can be a good way to allow model to learn other output possiblities!? 
-    * How are others doing it?
-    * Or a larger dataset would help?
-
-* Sampling tokens from distribution auto-regressively.
-    * Basic version done.!
-    * Try `temprature` for softmax
-    * Beam search
-
-* Dropout
-    * Emperically, it does seem to prevent overfitting of the model. 
-    * Val loss keep decreasing as train loss decreases. 
-    * On small datasets, the val loss starts to increase soon after.
-    * Tried dropout=0.5
-
-* Truncated BPTT and how to implement it?
-    * Implemented by creating input sequences of length max_seq_len e.g. 100
-    * That's how its done in Karpathy's repo. Is there another way?
-
-* LM Perpexity
-    * Perplexity = exp(cross_entropy_loss)
-
-* Larger corpus
-    * Model train VERY SLOW on larger >1MB dataset :(
-    * Try GPU training
-
 
 # Considerations
 
-Output Selection:
+**Output Selection**
 * The current training script uses argmax to select the output character, which causes the model to always select the same character conditioned on the pretext. To allow the model to learn other output possibilities, consider sampling from the output distribution as an alternative approach.
 
-Sampling Tokens:
+**Sampling Tokens**
 * The model generates new text by sampling tokens from the distribution in an auto-regressive manner. To improve performance, consider implementing temperature for softmax and beam search algorithms.
 
-Overfitting Prevention:
+**Overfitting Prevention**
 * Dropout has been empirically observed to prevent overfitting of the model. However, when working with small datasets, the validation loss may start to increase soon after. A dropout rate of 0.5 has been tried in the past.
 
-Truncated Backpropagation Through Time (BPTT):
+**Truncated Backpropagation Through Time (BPTT)**
 * Truncated BPTT is implemented by creating input sequences of maximum length, e.g. 100. This is in line with the implementation used in Karpathy's repo, but alternative methods may also be considered.
 
-Language Model Perplexity:
-* The perplexity of a language model can be calculated as exp(cross-entropy loss).
+**Language Model Perplexity**
+* Perplexity = `exp(cross-entropy loss)`
 
-GPU Training:
+**GPU Training**
 * The current model may train very slowly on larger datasets (>1MB). To improve performance, consider training the model on a GPU.
