@@ -2,8 +2,9 @@
 Character-level Language Model built with RNN
 
 # References
-TODO fill out
-
+* Inspiration of this repo, Andrej Karpathy's blog [The Unreasonable Effectiveness of Recurrent Neural Networks]http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
+* Karpathy's repo [char-rnn](https://github.com/karpathy/char-rnn)
+* Stanford NLP [Lecture 6 - RNN & LSTM](https://www.youtube.com/watch?v=0LixFSa7yts&list=PLoROMvodv4rOSH4v6133s9LFPRHjEmbmJ&index=7)
 
 # Observations / Considerations
 
