@@ -33,9 +33,12 @@ def process_input_file(file_path, seq_len=50, batch_size=100, train_frac=0.95):
     Y_all = torch.tensor(Y_all).view(-1,seq_len)
     dataset = TensorDataset(X_all, Y_all)
     train_dataset, val_dataset = random_split(dataset, [train_frac, 1-train_frac])
-    print(f"Train set: {len(train_dataset)} | Val set: {len(val_dataset)}")
-
+    
+    # create dataloader
     train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=True)
+
+    print(f"Train: samples={len(train_dataset)} batches={len(train_dataloader)}" + 
+          f" | Val: samples={len(val_dataset)} batches={len(val_dataloader)}")
 
     return train_dataloader, val_dataloader

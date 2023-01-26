@@ -16,10 +16,7 @@ Character-level Language Model built with RNN
     * Implemented by creating input sequences of length max_seq_len e.g. 100
 
 * Measure perpexity
-
-* Model
-    * Add multiple hidden layers
-    * Add dropout
+    * Perplexity = exp(cross_entropy_loss)
 
 * Larger corpus
     * Model train VERY SLOW on larger >1MB dataset :(

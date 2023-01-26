@@ -64,7 +64,10 @@ def train(model, train_dataloader, val_dataloader=None, epochs=1000, lr=0.01):
             
         if epoch % 100 == 0:
             print('-----------------')
-            print(f'Epoch: {epoch} | Loss: {np.mean(train_loss)}')
+            avg_train_loss = np.mean(train_loss)
+            train_ppl = np.exp(avg_train_loss)
+            print(f'Epoch: {epoch} | Loss: {avg_train_loss} | Perplexity: {train_ppl}')
+
             if val_dataloader is not None:
                 val_loss = []
                 for X_val, Y_val in val_dataloader:
@@ -72,6 +75,8 @@ def train(model, train_dataloader, val_dataloader=None, epochs=1000, lr=0.01):
                     val_loss.append(loss.item())
 
                 x_sample = X_val[0]
-                print(f'Epoch: {epoch} | Val Loss: {np.mean(val_loss)}')
+                avg_val_loss = np.mean(val_loss)
+                val_ppl = np.exp(avg_val_loss)
+                print(f'Epoch: {epoch} | Val Loss: {avg_val_loss} | Perplexity: {val_ppl}')
                 print(f'<Target>: {char_idx_to_str(x_sample)}')
                 print(f'<Prediction>: {test_batch_gen_text(model, X_val[:1])[0]}')
