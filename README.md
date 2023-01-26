@@ -89,3 +89,24 @@ You can also provide `context` to prime the model for generating new text condit
 * Larger corpus
     * Model train VERY SLOW on larger >1MB dataset :(
     * Try GPU training
+
+
+# Considerations
+
+Output Selection:
+* The current training script uses argmax to select the output character, which causes the model to always select the same character conditioned on the pretext. To allow the model to learn other output possibilities, consider sampling from the output distribution as an alternative approach.
+
+Sampling Tokens:
+* The model generates new text by sampling tokens from the distribution in an auto-regressive manner. To improve performance, consider implementing temperature for softmax and beam search algorithms.
+
+Overfitting Prevention:
+* Dropout has been empirically observed to prevent overfitting of the model. However, when working with small datasets, the validation loss may start to increase soon after. A dropout rate of 0.5 has been tried in the past.
+
+Truncated Backpropagation Through Time (BPTT):
+* Truncated BPTT is implemented by creating input sequences of maximum length, e.g. 100. This is in line with the implementation used in Karpathy's repo, but alternative methods may also be considered.
+
+Language Model Perplexity:
+* The perplexity of a language model can be calculated as exp(cross-entropy loss).
+
+GPU Training:
+* The current model may train very slowly on larger datasets (>1MB). To improve performance, consider training the model on a GPU.
